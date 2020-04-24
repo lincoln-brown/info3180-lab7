@@ -16,8 +16,8 @@ import os
 def upload():
     upload=UploadForm()
     if request.method == "POST" and upload.validate_on_submit():
-        photo=request.uploads['photo']
-        des=request.uploads['description']
+        photo=upload.photo.data
+        des=upload.description.data
         filename = secure_filename(photo.filename)
         photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         data={
